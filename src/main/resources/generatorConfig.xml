@@ -23,17 +23,16 @@
 
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://116.196.112.144:3306/publicpay"
-        				userId="publicpay"
-                        password="1234567"/>
+                        connectionURL="jdbc:mysql://tjwqstaging-hdd.doris.srv:10000/newretail"
+        				userId="xm_report_wr"
+                        password="xm_report_wr"/>
         <javaTypeResolver>
             <!-- This property is used to specify whether MyBatis Generator should force 
                 the use of java.math.BigDecimal for DECIMAL and NUMERIC fields, -->
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
-
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="com.publicpay.account.beans.bo"
+        <javaModelGenerator targetPackage="com.xiaomi.cnzone.proretail.dao.model"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
@@ -46,28 +45,43 @@
         </sqlMapGenerator>
 
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator targetPackage="com.publicpay.account.mapper"
+        <javaClientGenerator targetPackage="com.xiaomi.cnzone.proretail.dao"
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
+        
+
 
         <!-- 要生成哪些表 -->
+        <!--
         <table tableName="ACCOUNT_JPUSH" domainObjectName="AccountJpush" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql"/>
         </table>
-
-   <!--     &lt;!&ndash; 要生成哪些表 &ndash;&gt;
-        <table tableName="JPUSH_MSG" domainObjectName="JpushMsg" enableCountByExample="false"
+        -->
+        
+        
+        <table tableName="app_offline_sales_lst_store_goods_deposit_day" domainObjectName="OfflineSalesLstStoreGoodsDepositDay" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql"/>
+            <generatedKey column="store_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="app_offline_rebate_lst_store_goods_day" domainObjectName="OfflineRebateLstStoreGoodsDay" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="goods_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="dwm_upc_rebate_store_cost_entry_export" domainObjectName="UpcRebateStoreCostEntryExport" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="dim_upc_company" domainObjectName="UpcCompany" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="dim_upc_organization" domainObjectName="UpcOrganization" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="org_code" sqlStatement="JDBC" identity="true"/>
         </table>
 
-        &lt;!&ndash; 要生成哪些表 &ndash;&gt;
-        <table tableName="MSG_GROUP" domainObjectName="MsgGroup" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql"/>
-        </table>-->
         
     </context>
 </generatorConfiguration>
