@@ -23,29 +23,32 @@
 
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://tjwqstaging-hdd.doris.srv:10000/newretail"
-        				userId="xm_report_wr"
-                        password="xm_report_wr"/>
+                        connectionURL=""
+        				userId="proretail_wn"
+                        password="">
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+        
         <javaTypeResolver>
             <!-- This property is used to specify whether MyBatis Generator should force 
                 the use of java.math.BigDecimal for DECIMAL and NUMERIC fields, -->
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="com.xiaomi.cnzone.proretail.dao.model"
+        <javaModelGenerator targetPackage="com.xiaomi.cnzone.proretail.model.po.ads"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置 -->
-        <sqlMapGenerator targetPackage="dbmap"
+        <sqlMapGenerator targetPackage="mybatis/mapper/ads"
                          targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator targetPackage="com.xiaomi.cnzone.proretail.dao"
+        <javaClientGenerator targetPackage="com.xiaomi.cnzone.proretail.dao.ads"
                              targetProject="src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
@@ -59,29 +62,57 @@
             <generatedKey column="id" sqlStatement="Mysql"/>
         </table>
         -->
-        
-        
-        <table tableName="app_offline_sales_lst_store_goods_deposit_day" domainObjectName="OfflineSalesLstStoreGoodsDepositDay" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <generatedKey column="store_id" sqlStatement="JDBC" identity="true"/>
-        </table>
-        <table tableName="app_offline_rebate_lst_store_goods_day" domainObjectName="OfflineRebateLstStoreGoodsDay" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <generatedKey column="goods_id" sqlStatement="JDBC" identity="true"/>
-        </table>
-        <table tableName="dwm_upc_rebate_store_cost_entry_export" domainObjectName="UpcRebateStoreCostEntryExport" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
-        </table>
-        <table tableName="dim_upc_company" domainObjectName="UpcCompany" enableCountByExample="false"
+
+
+       <!-- 
+        ads_sales_month_province        AdsSalesMonthProvince
+        ads_sales_day_province          AdsSalesDayProvince
+        ads_sales_month_org             AdsSalesMonthOrg
+        ads_rebate_month_org            AdsRebateMonthOrg
+        ads_financing_month_org         AdsFinancingMonthOrg
+        ads_sales_day_org               AdsSalesDayOrg
+        ads_position_union              AdsPositionUnion
+        ads_position_zone               AdsPositionZone
+        ads_position_company            AdsPositionCompany
+        -->
+
+        <table tableName="ads_sales_month_province" domainObjectName="AdsSalesMonthProvince" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
         </table>
-        <table tableName="dim_upc_organization" domainObjectName="UpcOrganization" enableCountByExample="false"
+        <!--<table tableName="ads_sales_day_province" domainObjectName="AdsSalesDayProvince" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <generatedKey column="org_code" sqlStatement="JDBC" identity="true"/>
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
         </table>
-
+        
+        <table tableName="ads_sales_month_org" domainObjectName="AdsSalesMonthOrg" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="ads_rebate_month_org" domainObjectName="AdsRebateMonthOrg" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="ads_financing_month_org" domainObjectName="AdsFinancingMonthOrg" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="ads_sales_day_org" domainObjectName="AdsSalesDayOrg" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="ads_position_union" domainObjectName="AdsPositionUnion" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="ads_position_zone" domainObjectName="AdsPositionZone" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="ads_position_company" domainObjectName="AdsPositionCompany" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="company_id" sqlStatement="JDBC" identity="true"/>
+        </table>-->
         
     </context>
 </generatorConfiguration>
